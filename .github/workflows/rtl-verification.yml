@@ -1,0 +1,33 @@
+
+name: RTL Verification
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  market-data-parser:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Icarus Verilog
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y iverilog
+
+      - name: Compile market data parser
+        run: |
+          iverilog -g2012 -Wall \
+            -s tb_market_data_parser \
+            -o sim_parser.out \
+            rtl/fixed_point_pkg.sv \
+            market_data_parser/market_data_parser.sv \
+            tb/tb_market_data_parser/tb_market_data_parser.sv
+
+      - name: Run simulation
+        run: |
+          vvp sim_parser.out
+

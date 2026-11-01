@@ -1,0 +1,21 @@
+# Simulation outputs
+*.out
+*.vcd
+
+# Waveform and simulation files
+*.fst
+*.lxt
+*.lxt2
+
+# Backup files
+*.bak
+*~
+
+# Vivado generated files
+*.jou
+*.log
+*.cache/
+*.runs/
+*.sim/
+*.hw/
+*.ip_user_files/
